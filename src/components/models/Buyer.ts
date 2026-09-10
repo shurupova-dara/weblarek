@@ -1,5 +1,7 @@
 import { IBuyer, TPayment } from "../../types/index";
 
+type TErrors = Record<keyof IBuyer, string>;
+
 export class Buyer {
   protected data: IBuyer;
 
@@ -41,13 +43,8 @@ export class Buyer {
     };
   }
 
-  validate(): {
-    payment: string;
-    address: string;
-    email: string;
-    phone: string;
-  } {
-    const errors = {
+  validate(): TErrors {
+    const errors: TErrors = {
       payment: "",
       address: "",
       email: "",
